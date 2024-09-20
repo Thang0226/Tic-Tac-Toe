@@ -41,12 +41,10 @@ function changeValue() {
   b.innerHTML = data;
 
   // alert if player 0 or player 1 wins
-  if (winGame()) {
-    if (turn) {
-      alert("O Wins!");
-    } else {
-      alert("X Wins!");
-    }
+  if (winGame() == "x") {
+    alert("X Wins!");
+  } else if (winGame() == "o") {
+    alert("O Wins!");
   }
 
   turn = !turn;
@@ -65,9 +63,11 @@ function winGame() {
       (board[j][0] == "o" &&
         board[j - 1][0] == "o" &&
         board[j + 1][0] == "o") ||
-      (board[j][4] == "o" &&
-        board[j - 1][4] == "o" &&
-        board[j + 1][4] == "o") ||
+      (board[j][4] == "o" && board[j - 1][4] == "o" && board[j + 1][4] == "o")
+    ) {
+      return "o";
+    }
+    if (
       (board[0][j] == "x" &&
         board[0][j - 1] == "x" &&
         board[0][j + 1] == "x") ||
@@ -79,7 +79,7 @@ function winGame() {
         board[j + 1][0] == "x") ||
       (board[j][4] == "x" && board[j - 1][4] == "x" && board[j + 1][4] == "x")
     ) {
-      return true;
+      return "x";
     }
   }
 
@@ -93,7 +93,7 @@ function winGame() {
           (board[i - 1][j - 1] == "o" && board[i + 1][j + 1] == "o") ||
           (board[i - 1][j + 1] == "o" && board[i + 1][j - 1] == "o"))
       )
-        return true;
+        return "o";
 
       if (
         board[i][j] == "x" &&
@@ -102,9 +102,7 @@ function winGame() {
           (board[i - 1][j - 1] == "x" && board[i + 1][j + 1] == "x") ||
           (board[i - 1][j + 1] == "x" && board[i + 1][j - 1] == "x"))
       )
-        return true;
+        return "x";
     }
   }
-
-  return false;
 }
