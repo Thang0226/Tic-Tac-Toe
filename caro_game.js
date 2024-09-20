@@ -18,11 +18,13 @@ for (let i = 0; i < 5; i++) {
 }
 b.innerHTML = data;
 
-// when player click button Change Value (player 0 is x, player 1 is o):
+// when player click button Change Value:
 function changeValue() {
   let posX = +prompt("X (1-5):");
   let posY = +prompt("Y (1-5):");
+
   // change element at position (x,y) in array
+  // player 0 (turn=false) is x, player 1 (turn=true) is o
   if (turn) {
     board[posX - 1][posY - 1] = "o";
   } else {
@@ -103,5 +105,6 @@ function winGame() {
         return true;
     }
   }
+
   return false;
 }
